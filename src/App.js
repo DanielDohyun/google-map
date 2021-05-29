@@ -2,6 +2,7 @@ import './App.css';
 import React, {useState, useCallback} from 'react'
 import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
 import Geocode from 'react-geocode';
+import { Descriptions } from 'antd';
 
 Geocode.setApiKey("AIzaSyAMQmkgHfqVwierkO-Ryo3UXEtFM9NO2dU");
 
@@ -93,22 +94,36 @@ function App() {
   }
 
   return isLoaded ? (
-    <GoogleMap
-      mapContainerStyle={containerStyle}
-      center={{lat: mapPos.lat, lng: mapPos.lng}}
-      zoom={10}
-      onLoad={onLoad}
-      onUnmount={onUnmount}
-    >
-      <Marker
-        draggable={true}
-        onDragEnd={onMarkerDragEnd}
-        position={marker}>
-        <InfoWindow>
-          <div>hello</div>
-        </InfoWindow>
-      </Marker>
-    </GoogleMap>
+    <div>
+      <div>
+      <Descriptions title="User Info" layout="vertical" bordered>
+        <Descriptions.Item label="Product">Cloud Database</Descriptions.Item>
+        <Descriptions.Item label="Billing Mode">Prepaid</Descriptions.Item>
+        <Descriptions.Item label="Automatic Renewal">YES</Descriptions.Item>
+        <Descriptions.Item label="Order time">2018-04-24 18:00:00</Descriptions.Item>
+        <Descriptions.Item label="Usage Time" span={2}>
+          2019-04-24 18:00:00
+        </Descriptions.Item>
+      </Descriptions>
+      </div>
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={{lat: mapPos.lat, lng: mapPos.lng}}
+        zoom={10}
+        onLoad={onLoad}
+        onUnmount={onUnmount}
+      >
+        <Marker
+          draggable={true}
+          onDragEnd={onMarkerDragEnd}
+          position={marker}>
+          <InfoWindow>
+            <div>hello</div>
+          </InfoWindow>
+        </Marker>
+      </GoogleMap>
+
+    </div>
   ) : <></>
 }
 
