@@ -95,15 +95,13 @@ function App() {
 
   return isLoaded ? (
     <div>
-      <div>
-      <Descriptions title="User Info" layout="vertical" bordered>
-        <Descriptions.Item label="Product">Cloud Database</Descriptions.Item>
-        <Descriptions.Item label="Billing Mode">Prepaid</Descriptions.Item>
-        <Descriptions.Item label="Automatic Renewal">YES</Descriptions.Item>
-        <Descriptions.Item label="Order time">2018-04-24 18:00:00</Descriptions.Item>
-        <Descriptions.Item label="Usage Time" span={2}>
-          2019-04-24 18:00:00
-        </Descriptions.Item>
+      <div style={{padding: '1rem', margin: '0 auto', maxWidth: 1000}}> 
+        <h1>Google Map Basic</h1>
+      <Descriptions  layout="vertical" bordered>
+          <Descriptions.Item label="City">{city}</Descriptions.Item>
+          <Descriptions.Item label="Area">{area}</Descriptions.Item>
+          <Descriptions.Item label="State">{state}</Descriptions.Item>
+          <Descriptions.Item label="Address">{address}</Descriptions.Item>
       </Descriptions>
       </div>
       <GoogleMap
@@ -118,7 +116,7 @@ function App() {
           onDragEnd={onMarkerDragEnd}
           position={marker}>
           <InfoWindow>
-            <div>hello</div>
+            <div>{address}</div>
           </InfoWindow>
         </Marker>
       </GoogleMap>
