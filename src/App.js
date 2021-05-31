@@ -9,7 +9,6 @@ Geocode.setApiKey("AIzaSyAMQmkgHfqVwierkO-Ryo3UXEtFM9NO2dU");
 
 function App() {
   const [map, setMap] = useState(null);
-  
   const [marker, setMarker] = useState({lat: -34.397, lng: 150.644});
   const [mapPos, setMapPos] = useState({lat: -34.397, lng: 150.644});
   const [address, setAddress] = useState('');
@@ -19,7 +18,8 @@ function App() {
 
   const containerStyle = {
     width: '500px',
-    height: '500px'
+    height: '500px',
+    margin: '0 auto'
   };
 
   const { isLoaded } = useJsApiLoader({
@@ -111,6 +111,7 @@ function App() {
       </div>
       <GoogleMap
         mapContainerStyle={containerStyle}
+        googleMapsApiKey={"AIzaSyAMQmkgHfqVwierkO-Ryo3UXEtFM9NO2dU"}
         center={{lat: mapPos.lat, lng: mapPos.lng}}
         zoom={10}
         onLoad={onLoad}
@@ -125,14 +126,15 @@ function App() {
           </InfoWindow>
         </Marker>
 
+        <AutoComplete
+          apiKey={'AIzaSyAMQmkgHfqVwierkO-Ryo3UXEtFM9NO2dU'}
+          style={{ position: 'absolute', left: '40%', top: '16px' }}
+        // style={{ width: '100%', height: '40px', paddingLeft: 16, marginTop: 2, marginBottom: '2rem'}}
+          types={['(regions)']}
+          onPlaceSelected={onPlaceSelected}
+        />
       </GoogleMap>
-      <AutoComplete
-        apiKey={'AIzaSyAMQmkgHfqVwierkO-Ryo3UXEtFM9NO2dU'}
-        style={{ width: '100%', height: '40px', paddingLeft: 16, marginTop: 2, marginBottom: '2rem'}}
-        types={['(regions)']}
-        onPlaceSelected={onPlaceSelected}
-      />
- 
+      
     </div>
   ) : <></>
 }
