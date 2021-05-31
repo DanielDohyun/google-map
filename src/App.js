@@ -3,6 +3,7 @@ import React, {useState, useCallback} from 'react'
 import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
 import Geocode from 'react-geocode';
 import { Descriptions } from 'antd';
+import AutoComplete from 'react-google-autocomplete';
 
 Geocode.setApiKey("AIzaSyAMQmkgHfqVwierkO-Ryo3UXEtFM9NO2dU");
 
@@ -93,9 +94,13 @@ function App() {
     })
   }
 
+  const onPlaceSelected = (place) => {
+    
+  }
+
   return isLoaded ? (
-    <div>
-      <div style={{padding: '1rem', margin: '0 auto', maxWidth: 1000}}> 
+    <div style={{padding: '1rem', margin: '0 auto', maxWidth: 1000}}>
+      <div > 
         <h1>Google Map Basic</h1>
       <Descriptions  layout="vertical" bordered>
           <Descriptions.Item label="City">{city}</Descriptions.Item>
@@ -119,8 +124,15 @@ function App() {
             <div>{address}</div>
           </InfoWindow>
         </Marker>
-      </GoogleMap>
 
+      </GoogleMap>
+      <AutoComplete
+        apiKey={'AIzaSyAMQmkgHfqVwierkO-Ryo3UXEtFM9NO2dU'}
+        style={{ width: '100%', height: '40px', paddingLeft: 16, marginTop: 2, marginBottom: '2rem'}}
+        types={['(regions)']}
+        onPlaceSelected={onPlaceSelected}
+      />
+ 
     </div>
   ) : <></>
 }
